@@ -1,0 +1,22 @@
+{
+  "name": "multiplayer-ai-chat-backend",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "src/server.js",
+  "scripts": {
+    "dev": "nodemon src/server.js",
+    "start": "node src/server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "eventsource-parser": "^1.1.2",
+    "express": "^4.18.3",
+    "livekit-server-sdk": "^2.5.1",
+    "socket.io": "^4.7.5",
+    "undici": "^6.19.8"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}
