@@ -1,25 +1,33 @@
-Multiplayer AI Chat – Hackathon MVP
+## The Problem
+Current AI chatbots are designed for 1-on-1 conversations. But what happens when multiple users want to talk to the same AI simultaneously? Traditional chatbots break down - they don't know when to respond, who to address, or how to maintain coherent group context.
 
-This workspace contains a working MVP scaffold for a real-time, multi-user AI chat experience using:
+## Our Solution
+MultiChat AI is a real-time multiplayer chatroom where multiple users can interact with an AI character named Nomi. The system uses:
 
-- Backend: Node.js + Express + Socket.io (WebSockets) with streaming to JanitorAI (OpenAI-compatible) endpoint
-- Frontend: React (Vite) + Socket.io client
-- Hosting-ready for: Vercel (frontend) + Railway/Render (backend)
+- **Smart Turn-Taking**: AI detects @mentions, conversation lulls, and direct questions to decide when to respond
+- **Context Management**: Maintains both individual user memories and group conversation summaries
+- **Real-Time Streaming**: Responses stream token-by-token to all users simultaneously
+- **WebSocket Architecture**: Built with Socket.io for instant message synchronization
 
-Quick start (dev):
+## Technologies Used
+- **Frontend**: React, Socket.io Client, Vite
+- **Backend**: Node.js, Express, Socket.io Server
+- **AI**: JanitorAI JLLM API (25k context window)
+- **Deployment**: Vercel (frontend), Railway (backend)
 
-1) Backend
-- Copy `multiplayer-ai-chat/backend/.env.example` to `.env`
-- Update `JLLM_AUTH` if needed (hackathon header defaults to calhacks2047)
-- Install deps and run dev server on port 3001
+## Innovation
+Unlike traditional chatbots, our system implements:
+1. Dynamic per-room context buffers
+2. Multi-user prompting architecture
+3. Rate limiting and anti-spam measures
+4. Graceful handling of user join/leave events
 
-2) Frontend
-- Copy `multiplayer-ai-chat/frontend/.env.example` to `.env`
-- Point `VITE_SOCKET_URL` at your backend (e.g., `http://localhost:3001`)
-- Install deps and run Vite dev server
+## Impact
+This architecture enables new use cases:
+- Virtual study groups with AI tutors
+- Collaborative brainstorming sessions
+- Customer support where multiple agents and AI assist together
+- Educational workshops with AI facilitators
 
-Deploy targets:
-- Frontend: Vercel
-- Backend: Railway or Render (keep single instance for MVP)
-
-See `multiplayer-ai-chat/README.md` for more details.
+## Try It Live
+🔗 https://multiplayer-ai-chat-woad.vercel.app/
