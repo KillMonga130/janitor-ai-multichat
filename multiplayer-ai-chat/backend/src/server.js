@@ -9,22 +9,34 @@ import { ResponseScheduler } from './services/responseScheduler.js';
 import { summarizeRoom } from './services/summarizer.js';
 import { AccessToken } from 'livekit-server-sdk';
 
-
 const app = express();
 app.use(express.json());
 
-
+// ✅ FIXED: Allow multiple origins for development and production
 const FRONTEND_ORIGIN = process.env.FRONTEND_ORIGIN || 'http://localhost:5173';
-app.use(cors({ origin: FRONTEND_ORIGIN }));
+const allowedOrigins = [
+  'http://localhost:5173',                              // Local development
+  'https://multiplayer-ai-chat-woad.vercel.app',       // Production
+  FRONTEND_ORIGIN                                       // Environment variable (flexible)
+];
 
+app.use(cors({
+  origin: allowedOrigins,
+  methods: ['GET', 'POST'],
+  credentials: true
+}));
 
 const server = http.createServer(app);
 const io = new SocketIOServer(server, {
-  cors: { origin: FRONTEND_ORIGIN },
-  pingInterval: 20000,
-  pingTimeout: 30000
+  cors: {
+    origin: allowedOrigins,                              // ✅ Match express CORS
+    methods: ['GET', 'POST'],
+    credentials: true
+  },
+  transports: ['websocket', 'polling'],                  // ✅ Add polling fallback
+  pingInterval: 25000,                                   // ✅ Increased for stability
+  pingTimeout: 60000
 });
-
 
 const PORT = process.env.PORT || 3001;
 
