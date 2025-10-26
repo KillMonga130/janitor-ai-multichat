@@ -30,4 +30,4 @@ This architecture enables new use cases:
 - Educational workshops with AI facilitators
 
 ## Try It Live
-🔗 https://multiplayer-ai-chat-woad.vercel.app/
+🔗 https://2man.vercel.app/
